@@ -24,8 +24,11 @@ jobs:
     - name: Install Dependencies
       run: npm ci
 
-    - name: Build Project
-      run: node index.js
+    - name: Install Babel
+      run: npm install @babel/core @babel/cli @babel/preset-env --save-dev
+
+    - name: Build
+      run: npm run build
 
   deploy:
     needs: build
