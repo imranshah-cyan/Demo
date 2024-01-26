@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.19.0, 18.x]
+        node-version: [16.19.0]
 
     steps:
     - uses: actions/checkout@v3
@@ -38,10 +38,10 @@ jobs:
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@v5.0.0
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.PSSH }}
-        ARGS: "-rlgoDzvc -i --delete"
-        SOURCE: "dist/"
         REMOTE_HOST: 82.165.205.30
         REMOTE_USER: root
-        TARGET: /root/
+        SSH_PRIVATE_KEY: ${{ secrets.SSH }}
+        ARGS: "-rlgoDzvc -i --delete"
+        SOURCE: "dist/"
+        TARGET: /var/www/Demo/
         EXCLUDE: "/node_modules/"
