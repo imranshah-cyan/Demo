@@ -41,7 +41,7 @@ jobs:
         host: 82.165.205.30
         username: root
         key: ${{ secrets.SSH }}
-        port: "-rlgoDzvc -i --delete"
+        port: 22
         script: |
           cd /var/www/Demo/
           git pull origin main
