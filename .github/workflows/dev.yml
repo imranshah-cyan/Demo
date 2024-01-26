@@ -36,12 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v5.0.0
+      uses: appleboy/ssh-action@master
       with:
-        REMOTE_HOST: 82.165.205.30
-        REMOTE_USER: root
-        SSH_PRIVATE_KEY: ${{ secrets.SSH }}
-        ARGS: "-rlgoDzvc -i --delete"
-        SOURCE: "dist/"
-        TARGET: /var/www/Demo/
-        EXCLUDE: "/node_modules/"
+        host: 82.165.205.30
+        username: root
+        key: ${{ secrets.SSH }}
+        port: "-rlgoDzvc -i --delete"
+        script: |
+          cd /var/www/Demo/
+          git pull origin main
+          git status
+          npm install
